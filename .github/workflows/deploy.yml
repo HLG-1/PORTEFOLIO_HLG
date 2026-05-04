@@ -21,8 +21,20 @@ jobs:
     - name: Copy portfolio files
       run: |
         mkdir -p dist
-        cp artifacts/portfolio/index.test.html dist/index.html
+        # Copier le bon fichier HTML
+        if [ -f "artifacts/portfolio/index.test.html" ]; then
+          cp artifacts/portfolio/index.test.html dist/index.html
+        elif [ -f "public/index.html" ]; then
+          cp public/index.html dist/index.html
+        else
+          echo "Error: No HTML file found"
+          exit 1
+        fi
+        # Copier les assets si existants
         cp -r artifacts/portfolio/attached_assets dist/ 2>/dev/null || true
+        cp -r public/attached_assets dist/ 2>/dev/null || true
+        # Vérifier que le fichier existe
+        ls -la dist/
         
     - name: Setup Pages
       uses: actions/configure-pages@v4
