@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, ExternalLink, Code2, Database, Network, Cpu, ShieldAlert, BookOpen, Download, Github, Linkedin, Award } from 'lucide-react';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { NavBar } from '@/components/NavBar';
+import logoPath from '@assets/image_1777893313870.png';
 
 // --- Card Component with hover effect ---
 const CosmicCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
@@ -79,10 +80,30 @@ export default function Home() {
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-[100px] pointer-events-none mix-blend-screen" />
           
           <div className="container max-w-5xl mx-auto z-10 text-center">
+            {/* Profile logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="flex justify-center mb-8"
+              data-testid="hero-logo"
+            >
+              <div className="relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary via-secondary to-[hsl(45_90%_60%)] blur-md opacity-70 animate-pulse scale-110" />
+                <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-primary/40 shadow-[0_0_40px_rgba(139,92,246,0.5)]">
+                  <img
+                    src={logoPath}
+                    alt="Hajar EL HALLAGUE"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
               className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-primary text-sm font-medium tracking-wide backdrop-blur-sm"
               data-testid="hero-badge"
             >

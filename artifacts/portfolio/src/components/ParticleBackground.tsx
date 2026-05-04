@@ -1,5 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 
+interface Star {
+  x: number;
+  y: number;
+  radius: number;
+  alpha: number;
+  twinkleSpeed: number;
+  twinkleOffset: number;
+  color: string;
+}
+
+interface ShootingStar {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  length: number;
+  alpha: number;
+  life: number;
+  maxLife: number;
+}
+
 export const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -15,42 +36,60 @@ export const ParticleBackground: React.FC = () => {
     canvas.width = width;
     canvas.height = height;
 
-    const particles: Array<{
-      x: number;
-      y: number;
-      radius: number;
-      vx: number;
-      vy: number;
-      alpha: number;
-      life: number;
-      maxLife: number;
-    }> = [];
+    const STAR_COLORS = [
+      'rgba(255, 255, 255,',
+      'rgba(200, 210, 255,',
+      'rgba(180, 140, 255,',
+      'rgba(100, 220, 255,',
+      'rgba(255, 220, 130,',
+    ];
 
-    const initParticles = () => {
-      const numParticles = Math.floor((width * height) / 15000); // Responsive particle count
-      particles.length = 0;
-      for (let i = 0; i < numParticles; i++) {
-        particles.push({
+    const stars: Star[] = [];
+    const shootingStars: ShootingStar[] = [];
+    let time = 0;
+    let shootingStarTimer = 0;
+
+    const initStars = () => {
+      stars.length = 0;
+      const count = Math.floor((width * height) / 3500);
+      for (let i = 0; i < count; i++) {
+        stars.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 1.5 + 0.1,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          alpha: Math.random(),
-          life: Math.random() * 100,
-          maxLife: 100 + Math.random() * 100
+          radius: Math.random() < 0.15
+            ? Math.random() * 2.2 + 1.2
+            : Math.random() * 1.2 + 0.2,
+          alpha: Math.random() * 0.6 + 0.2,
+          twinkleSpeed: Math.random() * 0.015 + 0.005,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          color: STAR_COLORS[Math.floor(Math.random() * STAR_COLORS.length)],
         });
       }
     };
 
-    initParticles();
+    const spawnShootingStar = () => {
+      const angle = (Math.random() * 40 + 20) * (Math.PI / 180);
+      const speed = Math.random() * 8 + 6;
+      shootingStars.push({
+        x: Math.random() * width * 0.8,
+        y: Math.random() * height * 0.4,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        length: Math.random() * 120 + 80,
+        alpha: 1,
+        life: 0,
+        maxLife: Math.random() * 60 + 40,
+      });
+    };
+
+    initStars();
 
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      initParticles();
+      initStars();
     };
 
     window.addEventListener('resize', handleResize);
@@ -58,50 +97,66 @@ export const ParticleBackground: React.FC = () => {
     let animationFrameId: number;
 
     const render = () => {
-      // Create trailing effect by drawing semi-transparent background
-      ctx.fillStyle = 'rgba(6, 7, 14, 0.2)'; // Match deep space background hsl(230 40% 4%) ~ #06070e
-      ctx.fillRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
 
-      particles.forEach((p) => {
-        p.x += p.vx;
-        p.y += p.vy;
+      time += 1;
+      shootingStarTimer += 1;
+      if (shootingStarTimer > 180 + Math.random() * 120) {
+        shootingStarTimer = 0;
+        spawnShootingStar();
+      }
 
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
+      stars.forEach((star) => {
+        const twinkle = Math.sin(time * star.twinkleSpeed + star.twinkleOffset);
+        const currentAlpha = star.alpha * (0.5 + 0.5 * twinkle);
 
-        p.life++;
-        if (p.life >= p.maxLife) {
-          p.life = 0;
-          p.x = Math.random() * width;
-          p.y = Math.random() * height;
+        if (star.radius > 1.5) {
+          const grd = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
+          grd.addColorStop(0, `${star.color}${currentAlpha})`);
+          grd.addColorStop(1, `${star.color}0)`);
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+          ctx.fillStyle = grd;
+          ctx.fill();
         }
 
-        // Twinkle effect
-        const twinkle = Math.sin((p.life / p.maxLife) * Math.PI);
-        const currentAlpha = p.alpha * twinkle;
-
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `${star.color}${currentAlpha})`;
         ctx.fill();
       });
 
-      // Draw subtle connecting lines for close particles
-      ctx.lineWidth = 0.5;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+      for (let i = shootingStars.length - 1; i >= 0; i--) {
+        const s = shootingStars[i];
+        s.life += 1;
+        s.x += s.vx;
+        s.y += s.vy;
+        s.alpha = (1 - s.life / s.maxLife) * 0.9;
 
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - dist / 100)})`; // Primary color hint
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
+        if (s.alpha <= 0 || s.life >= s.maxLife) {
+          shootingStars.splice(i, 1);
+          continue;
         }
+
+        const tailX = s.x - (s.vx / Math.sqrt(s.vx * s.vx + s.vy * s.vy)) * s.length;
+        const tailY = s.y - (s.vy / Math.sqrt(s.vx * s.vx + s.vy * s.vy)) * s.length;
+
+        const gradient = ctx.createLinearGradient(tailX, tailY, s.x, s.y);
+        gradient.addColorStop(0, `rgba(255,255,255,0)`);
+        gradient.addColorStop(0.7, `rgba(180,160,255,${s.alpha * 0.4})`);
+        gradient.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+
+        ctx.beginPath();
+        ctx.moveTo(tailX, tailY);
+        ctx.lineTo(s.x, s.y);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+        ctx.fill();
       }
 
       animationFrameId = requestAnimationFrame(render);
@@ -119,7 +174,7 @@ export const ParticleBackground: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.85 }}
     />
   );
 };
