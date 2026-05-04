@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Mail, Phone, MapPin, ExternalLink, Code2, Database, Network, Cpu, ShieldAlert, BookOpen, Download, Github, Linkedin, Award } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, Code2, Database, Network, Cpu, ShieldAlert, BookOpen, Github, Linkedin, Award } from 'lucide-react';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { NavBar } from '@/components/NavBar';
 import logoPath from '@assets/image_1777893313870.png';
@@ -485,10 +485,6 @@ export default function Home() {
                 </a>
               </div>
               
-              <button className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-full hover:bg-primary/90 transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]">
-                <Download className="w-5 h-5" />
-                Télécharger mon CV complet
-              </button>
             </motion.div>
           </div>
         </section>

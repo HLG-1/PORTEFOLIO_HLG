@@ -58,7 +58,7 @@ export const NavBar = () => {
             className="px-5 py-2 text-sm font-medium bg-primary/10 text-primary border border-primary/20 rounded-full hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.2)] hover:shadow-[0_0_25px_rgba(139,92,246,0.4)]"
             data-testid="btn-contact-nav"
           >
-            Télécharger CV
+            Contact
           </a>
         </div>
 
