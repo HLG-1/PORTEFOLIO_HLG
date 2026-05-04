@@ -37,8 +37,7 @@ export const NavBar = () => {
           className="text-xl font-bold tracking-tighter text-foreground font-display group flex items-center gap-2"
           data-testid="link-home-logo"
         >
-          <span className="text-primary">H</span>
-          <span className="group-hover:text-primary transition-colors">EL HALLAGUE</span>
+          <span className="text-primary">H.E.</span>
         </a>
         
         <div className="hidden md:flex items-center gap-8">
