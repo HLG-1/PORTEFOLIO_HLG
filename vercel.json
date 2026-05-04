@@ -1,16 +1,19 @@
 {
   "version": 2,
-  "outputDirectory": "artifacts/portfolio",
-  "buildCommand": "echo 'Static files ready'",
-  "installCommand": "echo 'No dependencies needed'",
+  "builds": [
+    {
+      "src": "artifacts/portfolio/**/*",
+      "use": "@vercel/static"
+    }
+  ],
   "routes": [
     {
       "src": "/",
-      "dest": "/index.test.html"
+      "dest": "/artifacts/portfolio/index.test.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/artifacts/portfolio/$1"
     }
   ]
 }
