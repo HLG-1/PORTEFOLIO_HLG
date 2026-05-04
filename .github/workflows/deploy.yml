@@ -43,6 +43,8 @@ jobs:
         # Copier les assets si existants
         cp -r artifacts/portfolio/attached_assets dist/ 2>/dev/null || true
         cp -r public/attached_assets dist/ 2>/dev/null || true
+        # Copier l'image de profil dans le bon dossier
+        cp artifacts/portfolio/profile.png dist/ 2>/dev/null || true
         # Vérifier que le fichier existe
         echo "Files in dist:"
         ls -la dist/
