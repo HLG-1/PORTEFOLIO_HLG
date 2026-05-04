@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "outputDirectory": "dist"
+  "buildCommand": "echo 'No build needed - static files'",
+  "outputDirectory": "public",
+  "installCommand": "echo 'No dependencies needed'",
+  "framework": null
 }
