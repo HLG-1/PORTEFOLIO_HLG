@@ -117,8 +117,7 @@ export default function Home() {
               className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-tight"
               data-testid="hero-title"
             >
-              Hajar <br className="md:hidden" />
-              <span className="text-gradient">EL HALLAGUE</span>
+              <span className="text-gradient">H.E.</span>
             </motion.h1>
             
             <motion.p 
