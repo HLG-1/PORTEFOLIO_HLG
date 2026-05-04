@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hajar EL HALLAGUE — Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌟%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%236366f1'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -20,9 +20,10 @@
             --bg-secondary: #1a1a1a;
             --text-primary: #ffffff;
             --text-secondary: #a0a0a0;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent: #8b5cf6;
+            --secondary: #facc15;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --gradient: linear-gradient(135deg, #8b5cf6 0%, #facc15 100%);
         }
 
         body {
@@ -87,7 +88,7 @@
             justify-content: center;
             padding: 0 2rem;
             position: relative;
-            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
         }
 
         .hero-content {
@@ -107,17 +108,23 @@
             animation: fadeInUp 1s ease;
         }
 
-        .hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
+        .hero .badge {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(139, 92, 246, 0.05);
+            color: var(--accent);
+            font-size: 0.875rem;
+            font-weight: 500;
             animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .hero .description {
-            font-size: 1.1rem;
+        .hero .subtitle {
+            font-size: 1.5rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             animation: fadeInUp 1s ease 0.4s both;
         }
 
@@ -130,7 +137,7 @@
 
         .btn {
             padding: 1rem 2rem;
-            border-radius: 8px;
+            border-radius: 2rem;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -138,24 +145,25 @@
         }
 
         .btn-primary {
-            background: var(--gradient);
+            background: var(--accent);
             color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
         }
 
         .btn-secondary {
-            border: 2px solid var(--accent);
-            color: var(--accent);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .btn-secondary:hover {
-            background: var(--accent);
-            color: white;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Sections */
@@ -176,6 +184,87 @@
             background-clip: text;
         }
 
+        /* Experience & Education */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .timeline-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .timeline-card {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            font-family: monospace;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+        }
+
         /* Projects */
         .projects-grid {
             display: grid;
@@ -186,73 +275,161 @@
 
         .project-card {
             background: var(--bg-secondary);
-            border-radius: 12px;
+            border-radius: 1rem;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
             border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            background: rgba(139, 92, 246, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .project-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-family: monospace;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: var(--accent);
         }
 
         .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: var(--text-primary);
         }
 
         .project-description {
             color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--accent-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
             font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
         /* Skills */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
             margin-top: 3rem;
+        }
+
+        .skills-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
         }
 
         .skill-category {
             background: var(--bg-secondary);
+            border-radius: 1rem;
             padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--card-border);
         }
 
-        .skill-category h3 {
-            font-size: 1.25rem;
+        .skill-category h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            color: var(--accent);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--card-border);
         }
 
-        .skill-list {
-            list-style: none;
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
         }
 
-        .skill-list li {
-            padding: 0.5rem 0;
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+        }
+
+        /* Certifications */
+        .certifications {
+            margin-top: 2rem;
+        }
+
+        .certifications h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-title {
+            font-weight: 700;
+        }
+
+        .cert-subtitle {
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 0.25rem;
+        }
+
+        .cert-id {
+            font-size: 0.75rem;
+            font-family: monospace;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 0.75rem;
+            word-break: break-all;
         }
 
         /* Contact */
@@ -260,29 +437,57 @@
             text-align: center;
         }
 
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-link {
+        .contact-description {
             color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            max-width: 600px;
+            margin: 0 auto 3rem;
         }
 
-        .contact-link:hover {
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid var(--card-border);
+            text-align: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--accent);
+            margin: 0 auto 1rem;
+        }
+
+        .contact-text {
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--card-border);
             color: var(--text-secondary);
         }
 
@@ -314,6 +519,18 @@
             }
             
             .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -354,15 +571,31 @@
                 opacity: 0;
             }
         }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==');
+        }
     </style>
 </head>
 <body>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <div class="logo">HLG</div>
             <ul class="nav-links">
-                <li><a href="#home">Accueil</a></li>
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="#experience">Parcours</a></li>
                 <li><a href="#projects">Projets</a></li>
                 <li><a href="#skills">Compétences</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -374,64 +607,186 @@
     <div class="particles" id="particles"></div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="hero">
         <div class="hero-content">
-            <h1>Hajar EL HALLAGUE</h1>
-            <div class="subtitle">Ingénieure IA & MLOps</div>
-            <div class="description">
-                Spécialisée en intelligence artificielle, machine learning et déploiement de solutions cloud. 
-                Passionnée par l'innovation technologique et la transformation digitale.
+            <div class="badge">Élève Ingénieure ENSIAS • AI & MLOps</div>
+            <h1>Hajar <span class="text-gradient">EL HALLAGUE</span></h1>
+            <div class="subtitle">
+                Créatrice de systèmes intelligents. De l'IA embarquée (TinyML) aux pipelines MLOps robustes, je transforme la donnée en impact réel.
             </div>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">Voir mes projets</a>
-                <a href="#contact" class="btn btn-secondary">Me contacter</a>
+                <a href="#projects" class="btn btn-primary">Découvrir mon univers</a>
+                <a href="https://github.com/HLG-1" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Section -->
+    <section id="experience">
+        <h2 class="section-title">Parcours & Expérience</h2>
+        <div class="timeline">
+            <div class="timeline-column">
+                <div class="timeline-header">
+                    <div class="timeline-icon" style="color: var(--accent);">⚙</div>
+                    <h3>Expérience</h3>
+                </div>
+                
+                <div class="timeline-card">
+                    <div class="timeline-date">Été 2024</div>
+                    <div class="timeline-title">Stagiaire – Analyse Données Recensement</div>
+                    <div class="timeline-subtitle">HCP Direction Régionale Guelmim</div>
+                    <div class="timeline-description">
+                        Développement d'une application web de visualisation interactive des données du Recensement Général de la Population et de l'Habitat (RGPH).
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Data Viz</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-card" style="opacity: 0.7;">
+                    <div class="timeline-date">Engagement</div>
+                    <div class="timeline-title">Membre Dév. & Respo. Com.</div>
+                    <div class="timeline-subtitle">Darlkhir</div>
+                    <div class="timeline-description">
+                        Première plateforme marocaine de mise en relation donateurs/bénévoles.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="timeline-column" style="padding-top: 6rem;">
+                <div class="timeline-header">
+                    <div class="timeline-icon" style="color: var(--secondary);">📚</div>
+                    <h3>Formation</h3>
+                </div>
+                
+                <div class="timeline-card">
+                    <div class="timeline-date">Sep 2024 – 2027</div>
+                    <div class="timeline-title">Élève Ingénieure en IA</div>
+                    <div class="timeline-subtitle">ENSIAS (Université Mohammed V)</div>
+                    <div class="timeline-description">Rabat, Maroc</div>
+                </div>
+                
+                <div class="timeline-card">
+                    <div class="timeline-date">Sep 2022 – Jun 2024</div>
+                    <div class="timeline-title">CPGE (MP)</div>
+                    <div class="timeline-subtitle">Centre Bab Essahra</div>
+                    <div class="timeline-description">Mathématiques et Physique</div>
+                </div>
+                
+                <div class="timeline-card">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-title">Baccalauréat Sc. Mathématiques A</div>
+                    <div class="timeline-subtitle">Mention Très Bien</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2 class="section-title">Projets Phares</h2>
+        <h2 class="section-title">Constellations de Projets</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <h3 class="project-title">🔬 Prédiction d'Antibiotiques</h3>
+                <div class="project-header">
+                    <div class="project-icon">🛡</div>
+                    <span class="project-status">En cours</span>
+                </div>
+                <h3 class="project-title">Prédiction de Résistance aux Antibiotiques</h3>
                 <p class="project-description">
-                    Développement d'un modèle de machine learning pour prédire l'efficacité des antibiotiques 
-                    basé sur les données génomiques des bactéries.
+                    PFA 2ème année. Pipeline MLOps complet pour la prédiction AMR (R/S/I). Orchestration Airflow, jeu de données OMS (5910 lignes).
                 </p>
-                <div class="project-tech">
+                <div class="tech-tags">
                     <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">BioPython</span>
+                    <span class="tech-tag">XGBoost</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">MLflow</span>
                     <span class="tech-tag">Docker</span>
                 </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">⌚ Smart Health Watch</h3>
+                <div class="project-header">
+                    <div class="project-icon" style="background: rgba(250, 204, 21, 0.2); color: var(--secondary);">💻</div>
+                    <span class="project-status" style="background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text-secondary);">2026</span>
+                </div>
+                <h3 class="project-title">SMART HEALTH WATCH</h3>
                 <p class="project-description">
-                    Application IoT de monitoring de santé en temps réel avec analyse des signaux vitaux 
-                    et alertes intelligentes basées sur l'IA.
+                    Montre connectée pédiatrique avec TinyML embarqué (CNN-LSTM) sur ESP32-S3 pour détecter épilepsie, asthme, arythmie.
                 </p>
-                <div class="project-tech">
-                    <span class="tech-tag">IoT</span>
-                    <span class="tech-tag">Edge AI</span>
-                    <span class="tech-tag">TensorFlow Lite</span>
+                <div class="tech-tags">
+                    <span class="tech-tag">C/C++</span>
+                    <span class="tech-tag">TF Lite</span>
+                    <span class="tech-tag">Flutter</span>
                     <span class="tech-tag">MQTT</span>
+                    <span class="tech-tag">ESP32</span>
                 </div>
             </div>
 
             <div class="project-card">
-                <h3 class="project-title">🤖 Distillation de Modèles</h3>
+                <div class="project-header">
+                    <div class="project-icon" style="background: rgba(250, 204, 21, 0.2); color: var(--secondary);">🌐</div>
+                    <span class="project-status" style="background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text-secondary);">Mars 2026</span>
+                </div>
+                <h3 class="project-title">Distillation de Connaissances</h3>
                 <p class="project-description">
-                    Optimisation de modèles deep learning par distillation pour déploiement sur 
-                devices contraints avec réduction de 90% de la taille.
+                    VGG-19 → SqueezeNet pour détection maladies des plantes. Export ONNX, quantification INT8 (0.7 Mo), inférence Android offline.
                 </p>
-                <div class="project-tech">
+                <div class="tech-tags">
                     <span class="tech-tag">PyTorch</span>
-                    <span class="tech-tag">Model Distillation</span>
-                    <span class="tech-tag">Quantization</span>
                     <span class="tech-tag">ONNX</span>
+                    <span class="tech-tag">Knowledge Dist.</span>
+                    <span class="tech-tag">Android</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">🗄</div>
+                    <span class="project-status" style="background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text-secondary);">2025</span>
+                </div>
+                <h3 class="project-title">MedML Pipeline</h3>
+                <p class="project-description">
+                    Pipeline MLOps complet pour la prédiction du diabète: préprocessing, MLflow, FastAPI, DVC, avec 14 tests automatisés.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">MLflow</span>
+                    <span class="tech-tag">DVC</span>
+                    <span class="tech-tag">pytest</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon" style="background: rgba(34, 197, 94, 0.2); color: #22c55e;">📍</div>
+                    <span class="project-status" style="background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text-secondary);">2025</span>
+                </div>
+                <h3 class="project-title">VegiTrack</h3>
+                <p class="project-description">
+                    Plateforme agricole intelligente avec web scraping météo et fiches techniques. Application web complète.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Django REST</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">BeautifulSoup</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon" style="background: rgba(249, 115, 22, 0.2); color: #f97316;">📚</div>
+                    <span class="project-status" style="background: rgba(255, 255, 255, 0.05); border-color: var(--card-border); color: var(--text-secondary);">2025</span>
+                </div>
+                <h3 class="project-title">Book Analyzer</h3>
+                <p class="project-description">
+                    Analyse intelligente de livres via Open Library API et LLMs. Génération audio MP3 et automatisation via n8n.
+                </p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">LLM</span>
+                    <span class="tech-tag">n8n</span>
+                    <span class="tech-tag">API REST</span>
                 </div>
             </div>
         </div>
@@ -439,72 +794,116 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <h2 class="section-title">Compétences Techniques</h2>
+        <h2 class="section-title">Arsenal Technique</h2>
         <div class="skills-grid">
-            <div class="skill-category">
-                <h3>🤖 IA & Machine Learning</h3>
-                <ul class="skill-list">
-                    <li>Deep Learning (TensorFlow, PyTorch)</li>
-                    <li>Machine Learning (Scikit-learn, XGBoost)</li>
-                    <li>Natural Language Processing</li>
-                    <li>Computer Vision</li>
-                    <li>Reinforcement Learning</li>
-                </ul>
+            <div class="skills-column">
+                <div class="skill-category">
+                    <h4 style="color: var(--accent);">Langages</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Java</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4 style="color: var(--secondary);">ML / Intelligence Artificielle</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">TF Lite</span>
+                        <span class="skill-tag">ONNX</span>
+                        <span class="skill-tag">HuggingFace</span>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4 style="color: var(--accent);">MLOps & Outils</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MLflow</span>
+                        <span class="skill-tag">DVC</span>
+                        <span class="skill-tag">Airflow</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">FastAPI</span>
+                        <span class="skill-tag">Evidently</span>
+                        <span class="skill-tag">Grafana</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
             </div>
-
-            <div class="skill-category">
-                <h3>☁️ Cloud & DevOps</h3>
-                <ul class="skill-list">
-                    <li>AWS (EC2, S3, SageMaker, Lambda)</li>
-                    <li>Docker & Kubernetes</li>
-                    <li>CI/CD (GitHub Actions, GitLab CI)</li>
-                    <li>Infrastructure as Code (Terraform)</li>
-                    <li>Monitoring (Prometheus, Grafana)</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>💻 Programmation</h3>
-                <ul class="skill-list">
-                    <li>Python (Expert)</li>
-                    <li>JavaScript/TypeScript</li>
-                    <li>SQL & NoSQL</li>
-                    <li>R & MATLAB</li>
-                    <li>Go (Basics)</li>
-                </ul>
-            </div>
-
-            <div class="skill-category">
-                <h3>📊 Data Engineering</h3>
-                <ul class="skill-list">
-                    <li>Apache Spark</li>
-                    <li>Apache Airflow</li>
-                    <li>Kafka & Event Streaming</li>
-                    <li>Data Warehousing</li>
-                    <li>ETL/ELT Pipelines</li>
-                </ul>
+            
+            <div class="skills-column">
+                <div class="certifications">
+                    <h3 style="color: var(--secondary);"> Certifications NVIDIA</h3>
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <div>
+                                <div class="cert-title">Rapid App Development with LLMs</div>
+                                <div class="cert-subtitle">NVIDIA • Nov 2025</div>
+                            </div>
+                            <div style="color: var(--text-secondary);">→</div>
+                        </div>
+                        <div class="cert-id">ID: Tntqjwr8R0SU0AaqQHXf7g</div>
+                    </div>
+                    
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <div>
+                                <div class="cert-title">Building RAG Agents with LLMs</div>
+                                <div class="cert-subtitle">NVIDIA • Nov 2025</div>
+                            </div>
+                            <div style="color: var(--text-secondary);">→</div>
+                        </div>
+                        <div class="cert-id">ID: 09K2a-uhSTW2WIcWsZyP9Q</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Langues & Soft Skills</h4>
+                    <ul style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                        <li><span style="color: var(--text-primary);">Français, Anglais</span> (Courant)</li>
+                        <li><span style="color: var(--text-primary);">Espagnol</span> (Débutant)</li>
+                    </ul>
+                    <div class="skill-tags">
+                        <span class="skill-tag" style="background: rgba(255, 255, 255, 0.05);">Leadership</span>
+                        <span class="skill-tag" style="background: rgba(255, 255, 255, 0.05);">Travail en équipe</span>
+                        <span class="skill-tag" style="background: rgba(255, 255, 255, 0.05);">Communication</span>
+                        <span class="skill-tag" style="background: rgba(255, 255, 255, 0.05);">Résolution de problèmes</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
     <section class="contact" id="contact">
-        <h2 class="section-title">Contact</h2>
-        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
-            Je suis toujours intéressée par de nouveaux défis et collaborations. 
-            N'hésitez pas à me contacter !
+        <h2 class="section-title">Initialiser le Contact</h2>
+        <p class="contact-description">
+            Je suis actuellement à la recherche de nouvelles opportunités pour appliquer mes compétences en IA et MLOps sur des projets à fort impact.
         </p>
-        <div class="contact-links">
-            <a href="mailto:hajar.elhallague@example.com" class="contact-link">📧 Email</a>
-            <a href="https://linkedin.com/in/hajar-elhallague" class="contact-link">💼 LinkedIn</a>
-            <a href="https://github.com/HLG-1" class="contact-link">🐙 GitHub</a>
-            <a href="https://twitter.com/hajar_elhallague" class="contact-link">🐦 Twitter</a>
+        
+        <div class="contact-grid">
+            <a href="mailto:hajarelhallague@gmail.com" class="contact-card">
+                <div class="contact-icon">✉</div>
+                <div class="contact-text">hajarelhallague@gmail.com</div>
+            </a>
+            <a href="tel:+212618159817" class="contact-card">
+                <div class="contact-icon" style="background: rgba(250, 204, 21, 0.1); color: var(--secondary);">📞</div>
+                <div class="contact-text">+212 6 18 15 98 17</div>
+            </a>
+            <a href="https://github.com/HLG-1" target="_blank" rel="noopener noreferrer" class="contact-card">
+                <div class="contact-icon" style="background: rgba(255, 255, 255, 0.1);">⚡</div>
+                <div class="contact-text">github.com/HLG-1</div>
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Hajar EL HALLAGUE. Tous droits réservés.</p>
+        <p>© 2024 Hajar EL HALLAGUE. Conçu dans l'univers numérique.</p>
     </footer>
 
     <script>
@@ -559,8 +958,8 @@
             observer.observe(section);
         });
 
-        // Observe project cards
-        document.querySelectorAll('.project-card').forEach((card, index) => {
+        // Observe cards
+        document.querySelectorAll('.timeline-card, .project-card, .skill-category').forEach((card, index) => {
             card.style.animationDelay = `${index * 0.1}s`;
             observer.observe(card);
         });
