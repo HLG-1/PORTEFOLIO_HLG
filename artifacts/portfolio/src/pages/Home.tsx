@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, ExternalLink, Code2, Database, Network, Cpu, ShieldAlert, BookOpen, Github, Linkedin, Award } from 'lucide-react';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { NavBar } from '@/components/NavBar';
-import logoPath from '@assets/image_1777893313870.png';
+import logoPath from '../../../attached_assets/image_1777893313870.png';
 
 // --- Card Component with hover effect ---
 const CosmicCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {

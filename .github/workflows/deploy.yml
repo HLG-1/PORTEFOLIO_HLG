@@ -23,13 +23,13 @@ jobs:
     - name: Copy portfolio files
       run: |
         mkdir -p dist
-        # Utiliser la version statique qui préserve le design original
-        if [ -f "artifacts/portfolio/index.static.html" ]; then
-          cp artifacts/portfolio/index.static.html dist/index.html
-          echo "✅ Using index.static.html - preserves original design quality"
-        elif [ -f "artifacts/portfolio/index.html" ]; then
+        # Utiliser la version React originale - bien meilleure !
+        if [ -f "artifacts/portfolio/index.html" ]; then
           cp artifacts/portfolio/index.html dist/index.html
-          echo "Found and copied artifacts/portfolio/index.html"
+          echo "✅ Using original React version - much better!"
+        elif [ -f "artifacts/portfolio/index.static.html" ]; then
+          cp artifacts/portfolio/index.static.html dist/index.html
+          echo "Found and copied artifacts/portfolio/index.static.html"
         elif [ -f "public/index.html" ]; then
           cp public/index.html dist/index.html
           echo "Found and copied public/index.html"
