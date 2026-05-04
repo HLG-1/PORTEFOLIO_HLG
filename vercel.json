@@ -1,19 +1,4 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "artifacts/portfolio/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/artifacts/portfolio/index.test.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/artifacts/portfolio/$1"
-    }
-  ]
+  "outputDirectory": "public"
 }
