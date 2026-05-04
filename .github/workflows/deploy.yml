@@ -22,10 +22,15 @@ jobs:
       run: |
         mkdir -p dist
         # Copier le bon fichier HTML
-        if [ -f "artifacts/portfolio/index.test.html" ]; then
+        if [ -f "artifacts/portfolio/index.html" ]; then
+          cp artifacts/portfolio/index.html dist/index.html
+          echo "Found and copied artifacts/portfolio/index.html"
+        elif [ -f "artifacts/portfolio/index.test.html" ]; then
           cp artifacts/portfolio/index.test.html dist/index.html
+          echo "Found and copied artifacts/portfolio/index.test.html"
         elif [ -f "public/index.html" ]; then
           cp public/index.html dist/index.html
+          echo "Found and copied public/index.html"
         else
           echo "Error: No HTML file found"
           exit 1
@@ -34,6 +39,7 @@ jobs:
         cp -r artifacts/portfolio/attached_assets dist/ 2>/dev/null || true
         cp -r public/attached_assets dist/ 2>/dev/null || true
         # Vérifier que le fichier existe
+        echo "Files in dist:"
         ls -la dist/
         
     - name: Setup Pages
